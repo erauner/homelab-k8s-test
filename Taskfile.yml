@@ -1,0 +1,35 @@
+version: "3"
+
+vars:
+  KIND_FLUX_PATH: clusters/kind/flux
+  GOTK_SYNC: '{{.KIND_FLUX_PATH}}/flux-system/gotk-sync.yaml'
+
+tasks:
+  # Basic validation tasks for testing
+  kustomize-build-all:
+    desc: Build all kustomize configurations for testing
+    vars:
+      DIRS:
+        - infrastructure/base
+        - infrastructure/kind
+        - "{{.KIND_FLUX_PATH}}"
+        - apps/base
+        - apps/kind
+    cmds:
+      - |
+        for dir in {{.DIRS | join " "}}; do
+          echo "Building $dir..."
+          kubectl kustomize "$dir" > /dev/null || exit 1
+        done
+        echo "✅ All kustomizations build successfully"
+
+  validate:
+    desc: Validate the test repository structure
+    deps: [kustomize-build-all]
+    cmds:
+      - echo "✅ Test repository validation completed"
+
+  test:
+    desc: Run basic tests
+    cmds:
+      - task: validate

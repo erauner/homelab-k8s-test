@@ -1,0 +1,16 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-nginx
+  namespace: test-apps
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: nginx
+        env:
+        - name: ENVIRONMENT
+          value: "kind"
+        - name: CLUSTER_TYPE
+          value: "test"

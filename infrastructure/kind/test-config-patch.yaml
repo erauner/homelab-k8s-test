@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-config
+  namespace: test-infrastructure
+data:
+  environment: "kind"
+  test-mode: "true"
+  message: "Hello from Kind test environment!"
+  cluster-type: "kind"
+  bootstrap-tested: "true"

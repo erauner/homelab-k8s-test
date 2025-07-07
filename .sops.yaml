@@ -1,0 +1,7 @@
+keys:
+  - &age_test age1test1234567890abcdefghijklmnopqrstuvwxyz1234567890abcdef
+creation_rules:
+  - path_regex: \.sops\.ya?ml$
+    age: *age_test
+  - path_regex: secrets/.*\.ya?ml$
+    age: *age_test
