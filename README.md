@@ -66,22 +66,3 @@ The tests use `SkipGitBootstrap=true` to focus on infrastructure validation whil
 - **Environment Overrides**: Kind-specific patches and configurations
 
 This structure mirrors the production homelab repository but with minimal, test-focused resources instead of real infrastructure components.
-
-
-
-
-## Run
-
-from: https://github.com/erauner/homelab-k8s
-
-
-ssh key:
-```
-eval $(ssh-agent -s) && ssh-add ~/.ssh/id_ed25519 && SSH_AUTH_SOCK=$SSH_AUTH_SOCK SSH_AGENT_PID=$SSH_AGENT_PID task test:e2e:bootstrap
-```
-
-deploy key:
-
-```
-TBD
-```
